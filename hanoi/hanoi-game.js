@@ -1,17 +1,26 @@
 
 class HanoiGame {
   constructor(towers) {
-    this.towers = [[3, 2, 1], [], []];
-  if(towers !== undefined)
+    if(towers !== undefined) {
+      this.towers = towers;
+    } else {
+      this.towers = [[3,2,1], [], []];
+    }
   }
 
 
 
   isValidMove(startTowerIdx, endTowerIdx) {
-    if(this.towers[endTowerIdx] === null && this.towers[endTowerIdx] !== this.towers[startTowerIdx]){
+    let startTower = this.towers[startTowerIdx];
+    let endTower = this.towers[endTowerIdx];
+    if (endTower === undefined || startTower === undefined || startTower.length === 0) {
+      return false
+    } else if (endTower.length === 0) {
       return true;
-    }else {
-      return false;
+    } else {
+      const topStartDisk = startTower[startTower.length-1];
+      const topEndDisk = endTower[endTower.length - 1];
+      return topStartDisk < topEndDisk;
     }
   }
 
